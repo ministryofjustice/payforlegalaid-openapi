@@ -8,3 +8,25 @@ env/
 *.code-workspace
 *.sha256
 terraform.tfstate
+
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+target/
+!**/src/main/**/target/
+!**/src/test/**/target/
+/.idea/
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+!**/src/main/**/out/
+!**/src/test/**/out/
+misc.xml
+modules.xml
+.idea/modules.xml
+
+### VS Code ###
+.vscode/
+**/.DS_Store
