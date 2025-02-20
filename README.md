@@ -11,6 +11,4 @@ The repository includes:
 - swagger.yaml
 
 ## How to use this repository
-This repository must exist at the same level as the calling project.
-For example /a/b/my_project  and  /a/b/payforlegalaid-openapi
-
+TBD - awaiting hosting implementation
