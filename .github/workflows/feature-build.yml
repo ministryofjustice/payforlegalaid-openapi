@@ -19,3 +19,6 @@ jobs:
         uses: './.github/snyk-scan'
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
+
+      - name: Deploy
+        run: mvn deploy

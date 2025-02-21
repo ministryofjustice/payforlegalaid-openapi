@@ -87,4 +87,11 @@
         </dependency>
     </dependencies>
 
+    <distributionManagement>
+        <repository>
+            <id>laa-pay-for-legal-aid</id>
+            <url>https://maven.pkg.github.com/ministryofjustice/payforlegalaid-openapi</url>
+        </repository>
+    </distributionManagement>
+
 </project>
