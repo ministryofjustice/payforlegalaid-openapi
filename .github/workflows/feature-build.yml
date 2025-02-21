@@ -8,6 +8,10 @@ jobs:
   feature_branch:
 
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
     steps:
       - name: Checkout GitHub repository
         uses: actions/checkout@v4
