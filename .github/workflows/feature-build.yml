@@ -31,6 +31,6 @@ jobs:
           java-version: '17'
 
       - name: Deploy
-        run: mvn deploy -X -e
+        run: mvn -X -e --batch-mode deploy
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
