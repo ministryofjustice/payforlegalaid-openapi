@@ -101,7 +101,7 @@
 
     <distributionManagement>
         <repository>
-            <id>payforlegalaid-api-package</id>
+            <id>github</id>
             <url>https://maven.pkg.github.com/ministryofjustice/payforlegalaid-openapi</url>
         </repository>
     </distributionManagement>
