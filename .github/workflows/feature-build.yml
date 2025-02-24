@@ -23,14 +23,3 @@ jobs:
         uses: './.github/snyk-scan'
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
-
-      - name: Setup Java
-        uses: actions/setup-java@v4
-        with:
-          distribution: 'corretto'
-          java-version: '17'
-
-      - name: Deploy
-        run: mvn -X -e --batch-mode deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
