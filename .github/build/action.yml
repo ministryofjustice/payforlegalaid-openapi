@@ -16,3 +16,10 @@ runs:
       run: mvn -B clean compile
       shell:
         bash
+
+    - name: Run Deploy
+      run: mvn -X -e --batch-mode deploy
+      shell:
+        bash
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
