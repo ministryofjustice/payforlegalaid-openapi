@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: PayForLegalAid API
-  version: 1.0.0
+  version: 1.1.0
   description: >
     API for accessing financial reports related to legal aid payments.
     **Authentication Notice**: 
@@ -33,6 +33,11 @@ components:
     CsvDownloadLink:
       operationId: downloadCsv
       description: Download the report as a CSV stream using its ID.
+      parameters:
+        id: $response.body#/id
+    ExcelDownloadLink:
+      operationId: getExcelById
+      description: Download the report as a Excel stream using its ID.
       parameters:
         id: $response.body#/id
   securitySchemes:
@@ -192,6 +197,8 @@ paths:
           links:
             downloadCsv:
               $ref: '#/components/links/CsvDownloadLink'
+            downloadExcel:
+              $ref: '#/components/links/ExcelDownloadLink'
         '400':
           $ref: '#/components/responses/BadRequestError'
         '401':
@@ -233,6 +240,74 @@ paths:
               schema:
                 type: string
                 example: "attachment; filename=report.csv"
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+
+  /excel/{id}:
+    get:
+      tags:
+        - Reports
+      operationId: getExcelById
+      summary: Download Report as Excel File
+      description: |
+        This endpoint allows users to download a report as an Excel file (.xlsx) by providing a unique report ID. 
+        The report data is streamed directly to the client as a downloadable attachment, ensuring efficient handling 
+        of large files without consuming excessive server memory.
+        
+        ### Key Features:
+        - **Streaming**: The Excel file is streamed directly to the client, making it suitable for large reports.
+        - **Attachment**: The file is sent as an attachment, prompting the client to download it with a specified filename.
+        - **MIME Type**: The response uses the standard MIME type for Excel files (`application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`).
+        
+        ### Example Use Cases:
+        - Downloading a financial report for a specific period.
+        
+        ### Notes:
+        - The report ID must be a valid UUID.
+        - If the report does not exist or the user is unauthorized, an appropriate error response will be returned.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "3fa85f64-5717-4562-b3fc-2c963f007e86"
+          description: |
+            The unique identifier (UUID) of the report to be downloaded. 
+            This ID is generated when the report is created and can be obtained from the report list or details endpoints.
+      responses:
+        '200':
+          description: |
+            The request was successful, and the report is being streamed as an Excel file. The file is sent as an attachment
+            with the filename derived from the report name and a `.xlsx` extension.
+
+            ### Response Details:
+            - **Content-Type** : `application/vnd.openxmlformats-officedocument.spreadsheetml.sheet`
+            - **Content-Disposition** : Specifies the filename for the downloaded file (e.g., `attachment; filename=report.xlsx`).
+            - **Body** : The binary content of the Excel file.
+          content:
+            application/vnd.openxmlformats-officedocument.spreadsheetml.sheet:
+              schema:
+                type: string
+                format: binary
+          headers:
+            Content-Disposition:
+              description: |
+                Specifies that the response is a downloadable attachment with a filename. The filename is derived from 
+                the report name and has a `.xlsx` extension.
+              schema:
+                type: string
+                example: "attachment; filename=report.xlsx"
+          links:
+            getReportById:
+              $ref: '#/components/links/ReportDetailsLink'
         '400':
           $ref: '#/components/responses/BadRequestError'
         '401':
