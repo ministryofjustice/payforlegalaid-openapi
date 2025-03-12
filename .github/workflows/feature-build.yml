@@ -17,6 +17,8 @@ jobs:
 
       - name: Build and test
         uses: './.github/build'
+        env:
+          TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB}}
 
       - name: Snyk Scan
         uses: './.github/snyk-scan'
