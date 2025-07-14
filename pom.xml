@@ -103,5 +103,4 @@
             <url>https://maven.pkg.github.com/ministryofjustice/payforlegalaid-openapi</url>
         </repository>
     </distributionManagement>
-
 </project>
