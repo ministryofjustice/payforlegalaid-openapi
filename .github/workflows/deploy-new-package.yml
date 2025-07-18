@@ -1,9 +1,16 @@
 name: Publish package to GitHub Packages
-on: workflow_dispatch
+
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   feature_branch:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    environment: maven-release
+
     permissions:
       contents: read
       packages: write
