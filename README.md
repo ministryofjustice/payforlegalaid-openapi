@@ -12,3 +12,9 @@ The repository includes:
 
 ## How to use this repository
 TBD - awaiting hosting implementation
+
+## How to deploy a new version of payforlegalaid-openapi
+Increment version number in pom.xml
+Raise PR for review, requires two approvals
+Merge change into main - this will trigger the package deployment workflow
+Review of workflow will be required, request from member of the GPFD team
