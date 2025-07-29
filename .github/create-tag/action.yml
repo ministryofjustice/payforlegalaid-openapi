@@ -1,0 +1,25 @@
+name: Create tag for deployed package
+
+runs:
+  using: 'composite'
+  steps:
+
+  - name: Checkout with deploy key for tag creation
+    uses: actions/checkout@v4
+    #    Use deploy key to meet tag creation ruleset restrictions
+    with:
+      ssh-key: ${{ env.DEPLOY_KEY }}
+
+  - name: Configure Git login for tags
+    # Mandatory for tag creation
+    run: |
+      git config user.name "github-actions[bot]"
+      git config user.email "github-actions[bot]@users.noreply.github.com"
+    shell: bash
+
+  - name: Create and push git tag using project version defined in pom
+    run: |
+      TAG="v"$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+      git tag -a $TAG -m "Release version {{ $TAG }}"
+      git push origin $TAG
+    shell: bash
