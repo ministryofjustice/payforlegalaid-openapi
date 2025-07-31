@@ -14,10 +14,12 @@ The repository includes:
 TBD - awaiting hosting implementation
 
 ## How to deploy a new version of payforlegalaid-openapi
-Increment version number in pom.xml
-Raise PR for review, requires two approvals
-Merge change into main - this will trigger the package deployment workflow
-Review of workflow will be required, request from member of the GPFD team
+* Increment version number in pom.xml
+* Raise PR for review, requires two approvals
+* Merge change into main - this will trigger the package deployment workflow
+* Review of workflow will be required, request from member of the GPFD team
 
 ## Tags
-On deployment of a new package, the CI/CD pipeline will also tag the software using the naming convention: vX.X.X
+On deployment of a new package, the CI/CD pipeline will also tag the software 
+
+This will use the current pom version and follow convention vX.X.X
