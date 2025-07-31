@@ -18,3 +18,6 @@ Increment version number in pom.xml
 Raise PR for review, requires two approvals
 Merge change into main - this will trigger the package deployment workflow
 Review of workflow will be required, request from member of the GPFD team
+
+## Tags
+On deployment of a new package, the CI/CD pipeline will also tag the software using the naming convention: vX.X.X
