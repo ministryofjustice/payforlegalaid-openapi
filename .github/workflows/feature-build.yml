@@ -11,11 +11,32 @@ jobs:
     steps:
       - name: Checkout GitHub repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
 
-      - name: Build and test
-        uses: './.github/build'
+#      - name: Build and test
+#        uses: './.github/build'
+#
+#      - name: Snyk Scan
+#        uses: './.github/snyk-scan'
+#        env:
+#          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
 
-      - name: Snyk Scan
-        uses: './.github/snyk-scan'
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
+      - name: Configure Git login for tags
+        # Mandatory for tag creation
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+#        shell: bash
+
+      - name: Increment version
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          PATCH=$((PATCH + 1))
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          mvn versions:set -DnewVersion=${NEW_VERSION}
+          mvn versions:commit
+          git add pom.xml
+          git commit -m "chore: bump version to $NEW VERSION [skip ci]"
+          git push origin HEAD

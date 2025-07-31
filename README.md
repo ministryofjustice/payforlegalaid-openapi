@@ -22,4 +22,4 @@ TBD - awaiting hosting implementation
 ## Tags
 On deployment of a new package, the CI/CD pipeline will also tag the software 
 
-This will use the current pom version and follow convention vX.X.X
+Tagging follows the naming convention vX.X.X, where X.X.X is the version defined in the `pom.xml`. If tag name pattern is altered in workflow, and does not follow convention, the tag creation will fail.
