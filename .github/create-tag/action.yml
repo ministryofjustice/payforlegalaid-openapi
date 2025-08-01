@@ -6,7 +6,7 @@ runs:
 
   - name: Checkout with deploy key for tag creation
     uses: actions/checkout@v4
-    #    Use deploy key to meet tag creation ruleset restrictions
+    #    Use deploy key at checkout to link tag creation to a valid deploy key. This is required to meet tag creation ruleset restrictions.
     with:
       ssh-key: ${{ env.DEPLOY_KEY }}
 
