@@ -13,8 +13,18 @@ The repository includes:
 ## How to use this repository
 TBD - awaiting hosting implementation
 
+## Versioning
+On creation of a pull request, the `increment version` workflow will run, and automatically increment the patch version number by one. 
+
+This is to support correct values for package deployment and tag creation.
+
 ## How to deploy a new version of payforlegalaid-openapi
-Increment version number in pom.xml
-Raise PR for review, requires two approvals
-Merge change into main - this will trigger the package deployment workflow
-Review of workflow will be required, request from member of the GPFD team
+* Increment version number in pom.xml
+* Raise PR for review, requires two approvals
+* Merge change into main - this will trigger the package deployment workflow
+* Review of workflow will be required, request from member of the GPFD team
+
+## Tags
+On deployment of a new package, the CI/CD pipeline will also tag the software 
+
+Tagging follows the naming convention vX.X.X, where X.X.X is the version defined in the `pom.xml`. If tag name pattern is altered in workflow, and does not follow convention, the tag creation will fail.
