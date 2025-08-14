@@ -19,7 +19,6 @@ On creation of a pull request, the `increment version` workflow will run, and au
 This is to support correct values for package deployment and tag creation.
 
 ## How to deploy a new version of payforlegalaid-openapi
-* Increment version number in pom.xml
 * Raise PR for review, requires two approvals
 * Merge change into main - this will trigger the package deployment workflow
 * Review of workflow will be required, request from member of the GPFD team
