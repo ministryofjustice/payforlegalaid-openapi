@@ -18,8 +18,19 @@ jobs:
           # Mandatory for version creation
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.email "github-actions[bot]@users.noreply.github.com"          
+          git config --global gpg.format ssh
+          git config --global user.signingkey ~/.ssh/signing_key
+          git config --global commit.gpgsign true
+
         shell: bash
+
+
+      - name: Set up SSH signing key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.OPENAPI_SSH }}" > ~/.ssh/bot_signing_key
+          chmod 600 ~/.ssh/bot_signing_key
 
       - name: Increment version
 #         testing signed commits
