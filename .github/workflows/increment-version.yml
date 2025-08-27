@@ -22,6 +22,7 @@ jobs:
         shell: bash
 
       - name: Increment version
+#         testing signed commits
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
