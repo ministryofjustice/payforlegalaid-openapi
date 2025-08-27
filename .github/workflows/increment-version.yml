@@ -25,15 +25,16 @@ jobs:
 
         shell: bash
 
-
       - name: Set up SSH signing key
         run: |
           mkdir -p ~/.ssh
           echo "${{ secrets.OPENAPI_SSH }}" > ~/.ssh/bot_signing_key
-          chmod 600 ~/.ssh/bot_signing_key
+          chmod 600 ~/.ssh/bot_signing_key  
+          ssh-keygen -y -f ~/.ssh/bot_signing_key > ~/.ssh/bot_signing_key.pub
+          chmod 644 ~/.ssh/bot_signing_key.pub
 
       - name: Increment version
-#         testing signed commits
+      #         testing signed commits
         run: |
           VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
           IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
@@ -44,3 +45,8 @@ jobs:
           git add pom.xml
           git commit -S -m "chore: bump version to $NEW VERSION [skip ci]"
           git push origin HEAD
+
+      - name: Clean up SSH signing key
+        if: always()
+        run: |
+          rm -f ~/.ssh/bot_signing_key ~/.ssh/bot_signing_key.pub
