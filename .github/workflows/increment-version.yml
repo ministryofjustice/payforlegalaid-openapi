@@ -28,10 +28,10 @@ jobs:
       - name: Set up SSH signing key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.OPENAPI_SSH }}" > ~/.ssh/bot_signing_key
-          chmod 600 ~/.ssh/bot_signing_key  
-          ssh-keygen -y -f ~/.ssh/bot_signing_key > ~/.ssh/bot_signing_key.pub
-          chmod 644 ~/.ssh/bot_signing_key.pub
+          echo "${{ secrets.OPENAPI_SSH }}" > ~/.ssh/signing_key
+          chmod 600 ~/.ssh/signing_key  
+          ssh-keygen -y -f ~/.ssh/signing_key > ~/.ssh/signing_key.pub
+          chmod 644 ~/.ssh/signing_key.pub
 
       - name: Increment version
       #         testing signed commits
@@ -49,4 +49,4 @@ jobs:
       - name: Clean up SSH signing key
         if: always()
         run: |
-          rm -f ~/.ssh/bot_signing_key ~/.ssh/bot_signing_key.pub
+          rm -f ~/.ssh/signing_key ~/.ssh/signing_key.pub
