@@ -17,7 +17,7 @@ jobs:
       - name: Configure Git login for tags
           # Mandatory for version creation
         run: |
-          git config user.name "github-actions[bot]"
+#          git config user.name "github-actions[bot]"
           git config user.email "${{ secrets.OPENAPI_SIGNING_SSH_USER }}"    
           git config --global gpg.format ssh
           git config --global user.signingkey ~/.ssh/signing_key
