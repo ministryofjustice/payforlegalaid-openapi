@@ -14,6 +14,14 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Set up SSH signing key
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.OPENAPI_SIGNING_SSH }}" > ~/.ssh/signing_key
+          chmod 600 ~/.ssh/signing_key  
+          ssh-keygen -y -f ~/.ssh/signing_key > ~/.ssh/signing_key.pub
+          chmod 644 ~/.ssh/signing_key.pub
+
       - name: Configure Git login for tags
           # Mandatory for version creation
         run: |
@@ -24,14 +32,6 @@ jobs:
           git config --global commit.gpgsign true
 
         shell: bash
-
-      - name: Set up SSH signing key
-        run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.OPENAPI_SIGNING_SSH }}" > ~/.ssh/signing_key
-          chmod 600 ~/.ssh/signing_key  
-          ssh-keygen -y -f ~/.ssh/signing_key > ~/.ssh/signing_key.pub
-          chmod 644 ~/.ssh/signing_key.pub
 
       - name: Increment version
         run: |
