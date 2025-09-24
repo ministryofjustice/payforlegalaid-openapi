@@ -97,7 +97,26 @@ components:
               error:
                 type: string
                 example: "BadRequestException: The request could not be processed."
-
+    ForbiddenError:
+      description: User cannot access this resource.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Forbidden: You cannot access this resource."
+    NotImplementedError:
+      description: This resource is not available on this system.
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "This resource is not available on this system."
 security:
   - CookieAuth: [ ]
 
@@ -316,3 +335,53 @@ paths:
           $ref: '#/components/responses/NotFoundError'
         '500':
           $ref: '#/components/responses/InternalServerError'
+
+  /reports/{id}/file:
+    get:
+      tags:
+        - Reports
+      summary: Download Generated Report as CSV Stream
+      description: Provides a CSV data stream for a specified report ID. This can trigger a file download when accessed via a browser.
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+            example: "3fa85f64-5717-4562-b3fc-2c963f007e86"
+          description: The unique ID of the requested report.
+      responses:
+        '200':
+          description: A CSV data stream of the report. The data is streamed as an attachment.
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+                example: |
+                  "date","amount","description"
+                  "2023-01-01","1000","Legal Aid Case Payment"
+          headers:
+            Content-Disposition:
+              description: Specifies that the response is a downloadable attachment with a file name.
+              schema:
+                type: string
+                example: "attachment; filename=report.csv"
+            Content-Length:
+              description: The expected file size of the CSV stream after download.
+              schema:
+                type: number
+                example: 34
+        '400':
+          $ref: '#/components/responses/BadRequestError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '501':
+          $ref: '#/components/responses/NotImplementedError'
