@@ -358,7 +358,7 @@ paths:
             application/octet-stream:
               schema:
                 type: string
-                format: binary
+                format: csv
                 example: |
                   "date","amount","description"
                   "2023-01-01","1000","Legal Aid Case Payment"
