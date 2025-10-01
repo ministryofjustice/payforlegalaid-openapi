@@ -45,7 +45,6 @@
                             <apiPackage>uk.gov.laa.gpfd.api</apiPackage>
                             <modelPackage>uk.gov.laa.gpfd.model</modelPackage>
                             <supportingFilesToGenerate>ApiUtil.java</supportingFilesToGenerate>
-                            <verbose>true</verbose>
                             <configOptions>
                                 <library>spring-boot</library>
                                 <oas3>false</oas3>
