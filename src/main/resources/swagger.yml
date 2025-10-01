@@ -340,6 +340,7 @@ paths:
     get:
       tags:
         - Reports
+      operationId: getReportDownloadById
       summary: Download Generated Report as CSV Stream
       description: Provides a CSV data stream for a specified report ID. This can trigger a file download when accessed via a browser.
       parameters:
