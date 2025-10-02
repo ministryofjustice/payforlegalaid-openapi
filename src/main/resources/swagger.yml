@@ -340,6 +340,7 @@ paths:
     get:
       tags:
         - Reports
+      operationId: getReportDownloadById
       summary: Download Generated Report as CSV Stream
       description: Provides a CSV data stream for a specified report ID. This can trigger a file download when accessed via a browser.
       parameters:
@@ -358,7 +359,7 @@ paths:
             application/octet-stream:
               schema:
                 type: string
-                format: binary
+                format: csv
                 example: |
                   "date","amount","description"
                   "2023-01-01","1000","Legal Aid Case Payment"

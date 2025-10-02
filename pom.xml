@@ -6,7 +6,7 @@
 
     <groupId>uk.gov.laa</groupId>
     <artifactId>payforlegalaid-openapi</artifactId>
-    <version>0.0.9</version>
+    <version>0.0.10</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -35,9 +35,11 @@
                             </inputSpec>
                             <typeMappings>
                                 <typeMapping>string+binary=StreamingResponseBody</typeMapping>
+                                <typeMapping>string+csv=InputStreamResource</typeMapping>
                             </typeMappings>
                             <importMappings>
                                 <importMapping>StreamingResponseBody=org.springframework.web.servlet.mvc.method.annotation.StreamingResponseBody</importMapping>
+                                <importMapping>InputStreamResource=org.springframework.core.io.InputStreamResource</importMapping>
                             </importMappings>
                             <generatorName>spring</generatorName>
                             <apiPackage>uk.gov.laa.gpfd.api</apiPackage>
