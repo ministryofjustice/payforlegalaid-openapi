@@ -6,16 +6,21 @@
 
 version: 2
 
+multi-ecosystem-groups:
+  maintenance-updates:
+    schedule:
+      interval: "weekly"
+
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
-    schedule:
-      interval: "daily"
+    patterns: [ "*" ]
+    multi-ecosystem-group: "maintenance-updates"
   - package-ecosystem: "maven"
     directory: "/"
-    schedule:
-      interval: "daily"
+    patterns: [ "*" ]
+    multi-ecosystem-group: "maintenance-updates"
   - package-ecosystem: "docker"
     directory: "/"
-    schedule:
-      interval: "daily"
+    patterns: [ "*" ]
+    multi-ecosystem-group: "maintenance-updates"
