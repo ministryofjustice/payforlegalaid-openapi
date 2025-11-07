@@ -14,7 +14,7 @@ info:
 
 
 servers:
-  - url: https://laa-get-payments-finance-data.apps.live.cloud-platform.service.justice.gov.uk/
+  - url: https://laa-get-payments-finance-data.cloud-platform.service.justice.gov.uk/
     description: Production Environment
   - url: https://uat-laa-get-payments-finance-data.cloud-platform.service.justice.gov.uk/
     description: UAT Test Environment
