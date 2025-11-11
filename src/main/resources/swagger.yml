@@ -130,6 +130,14 @@ paths:
         Retrieves a list of all available reports, including each report's ID, name, metadata, 
         and a link to retrieve detailed metadata for each report.
         **Note**: The `reportDetailUrl` field in each report provides a direct link to `/report/{id}`.
+      parameters:
+        - name: active
+          in: query
+          description: Filter reports by active status ("Y" for active, "N" for inactive)
+          required: false
+          schema:
+            type: string
+            enum: [ Y, N ]
       responses:
         '200':
           description: A JSON array containing metadata for each report.
@@ -153,6 +161,10 @@ paths:
                         description:
                           type: string
                           example: "Summary of invoices by source system"
+                        active:
+                          type: string
+                          enum: [ Y, N ]
+                          example: "Y"
           links:
             reportDetails:
               $ref: '#/components/links/ReportDetailsLink'
