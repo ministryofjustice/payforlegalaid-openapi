@@ -12,3 +12,25 @@ runs:
       env:
         SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
       shell: bash
+
+    - name: Snyk Code Scan.
+      uses: snyk/actions/maven@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        command: test
+        args: --sarif-file-output=snyk-code.sarif --severity-threshold=high
+
+    - name: Find built JAR
+      id: find-jar
+      run: |
+        JAR_FILE=$(ls target/*.jar | head -n 1)
+        echo "Found JAR: $JAR_FILE"
+        echo "jar_file=$JAR_FILE" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Snyk scan JAR
+      run: snyk test --file=${{ steps.find-jar.outputs.jar_file }} --sarif-file-output=snyk-jar.sarif --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      shell: bash
