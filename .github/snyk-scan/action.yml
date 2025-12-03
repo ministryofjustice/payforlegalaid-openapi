@@ -12,11 +12,3 @@ runs:
       env:
         SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
       shell: bash
-
-    - name: Snyk Code Scan.
-      uses: snyk/actions/maven@master
-      env:
-        SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
-      with:
-        command: test
-        args: --sarif-file-output=snyk-code.sarif --severity-threshold=high
