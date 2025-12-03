@@ -17,13 +17,18 @@ runs:
       shell:
         bash
 
+    - name: Run build
+      run: mvn -B clean package
+      shell:
+        bash
+
     - name: Find built JAR
       id: find-jar
       run: |
-        JAR_FILE=$(ls target/*.jar | head -n 1)
+        JAR_FILE=$(ls target/*.jar)
         echo "jar_file=$JAR_FILE" >> $GITHUB_OUTPUT
-
       shell: bash
+
     - name: Setup Snyk CLI
       uses: snyk/actions/setup@master
 
