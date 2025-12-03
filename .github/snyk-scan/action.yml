@@ -16,7 +16,7 @@ runs:
     - name: Snyk Code Scan.
       uses: snyk/actions/maven@master
       env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
       with:
         command: test
         args: --sarif-file-output=snyk-code.sarif --severity-threshold=high
@@ -32,5 +32,5 @@ runs:
     - name: Snyk scan JAR
       run: snyk test --file=${{ steps.find-jar.outputs.jar_file }} --sarif-file-output=snyk-jar.sarif --severity-threshold=high
       env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
       shell: bash
