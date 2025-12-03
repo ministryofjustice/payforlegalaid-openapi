@@ -2,35 +2,41 @@ name: Snyk Scan
 
 runs:
   using: 'composite'
-
+  
+  permissions:
+    contents: read
+    packages: write
   steps:
-      - name: Checkout repository
-        uses: actions/checkout@v5
+    - name: Checkout repository
+      uses: actions/checkout@v5
 
-      - name: Set up JDK
-        uses: actions/setup-java@v5
-        with:
-          java-version: '17'
-          distribution: 'corretto'
+    - name: Set up JDK
+      uses: actions/setup-java@v5
+      with:
+        java-version: '17'
+        distribution: 'corretto'
 
-      - name: Build JAR
-        run: mvn clean package
+    - name: Build JAR
+      run: mvn clean package
+      shell: bash
 
-      - name: Find built JAR
-        id: find-jar
-        run: |
-          JAR_FILE=$(ls target/*.jar | head -n 1)
-          echo "jar_file=$JAR_FILE" >> $GITHUB_OUTPUT
+    - name: Find built JAR
+      id: find-jar
+      run: |
+        JAR_FILE=$(ls target/*.jar | head -n 1)
+        echo "jar_file=$JAR_FILE" >> $GITHUB_OUTPUT
 
-      - name: Setup Snyk CLI
-        uses: snyk/actions/setup@master
+      shell: bash
+    - name: Setup Snyk CLI
+      uses: snyk/actions/setup@master
 
-      - name: Snyk scan JAR
-        run: snyk test --file=${{ steps.find-jar.outputs.jar_file }} --sarif-file-output=snyk-jar.sarif --severity-threshold=high
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+    - name: Snyk scan JAR
+      run: snyk test --file=${{ steps.find-jar.outputs.jar_file }} --sarif-file-output=snyk-jar.sarif --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      shell: bash
 
-      - name: Upload SARIF to GitHub Security tab
-        uses: github/codeql-action/upload-sarif@v3
-        with:
-          sarif_file: snyk-jar.sarif
+    - name: Upload SARIF to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: snyk-jar.sarif

@@ -20,9 +20,3 @@ jobs:
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
 
-      - name: Snyk Scan Jar
-        uses: './.github/snyk-jar'
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
-
-
