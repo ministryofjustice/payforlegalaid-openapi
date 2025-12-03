@@ -15,10 +15,10 @@ jobs:
       - name: Build and test
         uses: './.github/build'
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Snyk Scan
         uses: './.github/snyk-scan'
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN}}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
