@@ -13,11 +13,6 @@ runs:
         java-version: '17'
 
     - name: Run build
-      run: mvn -B clean compile
-      shell:
-        bash
-
-    - name: Run build
       run: mvn -B clean package
       shell:
         bash
