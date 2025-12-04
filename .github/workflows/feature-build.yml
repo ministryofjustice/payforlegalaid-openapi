@@ -12,7 +12,7 @@ jobs:
       - name: Checkout GitHub repository
         uses: actions/checkout@v5
 
-      - name: Build and test
+      - name: Build, test and Snyk Scan JAR
         uses: './.github/build'
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
