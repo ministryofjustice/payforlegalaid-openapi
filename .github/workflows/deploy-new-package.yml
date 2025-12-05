@@ -35,6 +35,7 @@ jobs:
           echo "JAVA_HOME=$JAVA_HOME"
           java -version
 
+      - uses: actions/checkout@master
       - name: Snyk scan published package
         uses: snyk/actions/maven@master
         env:
