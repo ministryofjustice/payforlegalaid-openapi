@@ -6,6 +6,11 @@ on:
       - main
       - chrisTest
   workflow_dispatch:
+  pull_request:
+    types:
+      - opened
+      - edited
+      - synchronize
 
 jobs:
   feature_branch:
