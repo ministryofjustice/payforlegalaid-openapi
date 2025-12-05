@@ -27,6 +27,12 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
+#          cache: maven
+
+      - run: |
+          java -version
+          echo "JAVA_HOME=$JAVA_HOME"
+          which java
 
       - name: Publish package
         run: mvn -e -X --batch-mode install
