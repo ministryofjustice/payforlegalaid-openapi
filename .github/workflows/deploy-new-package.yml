@@ -25,10 +25,10 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
-      - name: Publish package
-        run: mvn -e -X --batch-mode deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # - name: Publish package
+        # run: mvn -e -X --batch-mode deploy
+          # env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Snyk scan published package
         uses: snyk/actions/maven@master
@@ -44,7 +44,7 @@ jobs:
         with:
           sarif_file: snyk-publish.sarif
 
-      - name: Create tag using deploy key
-        uses: './.github/create-tag'
-        env:
-          DEPLOY_KEY: ${{ secrets.OPENAPI_DEPLOY_KEY }}
+        #- name: Create tag using deploy key
+        # uses: './.github/create-tag'
+          #env:
+          # DEPLOY_KEY: ${{ secrets.OPENAPI_DEPLOY_KEY }}
