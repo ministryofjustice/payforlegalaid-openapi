@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - chrisTest
 
 jobs:
   feature_branch:
@@ -35,7 +36,7 @@ jobs:
          args: --sarif-file-output=snyk-publish.sarif --severity-threshold=high
 
 
-      - name: Create tag using deploy key
-        uses: './.github/create-tag'
-        env:
-          DEPLOY_KEY: ${{ secrets.OPENAPI_DEPLOY_KEY }}
+#      - name: Create tag using deploy key
+#        uses: './.github/create-tag'
+#        env:
+#          DEPLOY_KEY: ${{ secrets.OPENAPI_DEPLOY_KEY }}
