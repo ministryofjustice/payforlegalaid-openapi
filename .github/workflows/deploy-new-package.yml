@@ -27,7 +27,7 @@ jobs:
         with:
           java-version: '17'
           distribution: 'corretto'
-#          cache: maven
+          cache: maven
 
       - run: |
           java -version
