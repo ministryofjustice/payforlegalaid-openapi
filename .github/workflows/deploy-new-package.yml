@@ -13,7 +13,7 @@ jobs:
   feature_branch:
     if: github.event_name == 'push' || github.base_ref == 'main'
     runs-on: ubuntu-latest
-    environment: maven-release
+    #environment: maven-release
 
     permissions:
       contents: read
