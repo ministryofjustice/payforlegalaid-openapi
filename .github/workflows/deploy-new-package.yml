@@ -39,6 +39,7 @@ jobs:
         uses: snyk/actions/maven@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+          JAVA_HOME: ${{ env.JAVA_HOME }}
         with:
           command: test
           args: --sarif-file-output=snyk-results.sarif --severity-threshold=high
