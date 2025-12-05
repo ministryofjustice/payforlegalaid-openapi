@@ -39,13 +39,13 @@ jobs:
         run: npm install -g snyk
 
       - name: Snyk scan published package
-        run: snyk test --sarif-file-output=snyk-results.sarif --severity-threshold=high
+        run: snyk test --sarif-file-output=snyk-publish.sarif --severity-threshold=high
         env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
             JAVA_HOME: ${{ env.JAVA_HOME }}
 
       - name: Upload SARIF to GitHub Security
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: snyk-publish.sarif
 
