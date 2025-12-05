@@ -30,6 +30,11 @@ jobs:
           # env:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: verify JAVA_HOME
+        run: |
+          echo "JAVA_HOME=$JAVA_HOME"
+          java -version
+
       - name: Snyk scan published package
         uses: snyk/actions/maven@master
         with:
