@@ -35,6 +35,9 @@ jobs:
           echo "JAVA_HOME=$JAVA_HOME"
           java -version
 
+      - name: Install Snyk CLI
+        run: npm install -g snyk
+
       - name: Snyk scan published package
         run: snyk test --sarif-file-output=snyk-results.sarif --severity-threshold=high
         env:
