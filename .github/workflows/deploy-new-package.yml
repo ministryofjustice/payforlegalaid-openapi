@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - chrisTest
+  workflow_dispatch:
 
 jobs:
   feature_branch:
