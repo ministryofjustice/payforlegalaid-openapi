@@ -39,6 +39,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Setup Snyk CLI
+        uses: snyk/actions/setup@master
+
       - name: Snyk scan published package
         uses: snyk/actions/maven@master
         env:
