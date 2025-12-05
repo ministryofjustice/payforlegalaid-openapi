@@ -10,7 +10,7 @@ jobs:
   feature_branch:
     #if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    #ienvironment: maven-release
+    environment: maven-release
 
     permissions:
       contents: read
@@ -28,7 +28,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Snyk scan published package
-        run: snyk test --sarif-file-output=snyk-publish.sarif --severity-threshold=high
+        uses: snyk/actions/maven@master
+        with:
+          command: test
+          args: --sarif-file-output=snyk-code.sarif --severity-threshold=high
         env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
             JAVA_HOME: ${{ env.JAVA_HOME }}
