@@ -36,10 +36,7 @@ jobs:
           java -version
 
       - name: Snyk scan published package
-        uses: snyk/actions/maven@master
-        with:
-          command: test
-          args: --sarif-file-output=snyk-code.sarif --severity-threshold=high
+        run: snyk test --sarif-file-output=snyk-results.sarif --severity-threshold=high
         env:
             SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
             JAVA_HOME: ${{ env.JAVA_HOME }}
