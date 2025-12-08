@@ -30,23 +30,17 @@ jobs:
           # env:
           # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: verify JAVA_HOME
-        run: |
-          echo "JAVA_HOME=$JAVA_HOME"
-          java -version
-          
       - name: Setup Snyk CLI
         uses: snyk/actions/setup@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Run Snyk scan
-        run:  snyk test --severity-threshold=high --sarif-file-output=snyk-publish.sarif
+        run: snyk test --severity-threshold=high --sarif-file-output=snyk-publish.sarif
         env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        shell: bash
 
       - name: Upload SARIF to GitHub Security
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@v3
         with:
           sarif_file: snyk-publish.sarif
 
