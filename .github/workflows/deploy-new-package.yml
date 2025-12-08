@@ -36,7 +36,7 @@ jobs:
           java -version
           
       - name: Setup Snyk CLI
-        uses: snyk/actions/maven@master
+        uses: snyk/actions/setup@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
