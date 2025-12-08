@@ -37,13 +37,13 @@ jobs:
           
       - name: Setup Snyk CLI
         uses: snyk/actions/setup@master
-
-      - name: Snyk scan published package
-        uses: snyk/actions/maven@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-          args: --sarif-file-output=snyk-results.sarif --severity-threshold=high
+
+      - name: Run Snyk scan
+        run: snyk --sarif-file-output=snyk-results.sarif --severity-threshold=high
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Upload SARIF to GitHub Security
         uses: github/codeql-action/upload-sarif@v4
