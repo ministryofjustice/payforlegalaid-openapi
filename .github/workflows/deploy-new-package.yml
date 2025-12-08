@@ -41,7 +41,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
       - name: Run Snyk scan
-        run:  snyk test --severity-threshold=high --sarif-file-output=snyk-results.sarif
+        run:  snyk test --severity-threshold=high --sarif-file-output=snyk-publish.sarif
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
