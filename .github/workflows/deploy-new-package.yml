@@ -26,14 +26,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Snyk scan published package
-        uses: snyk/actions/maven@master
-        env:
-          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        with:
-         command: test
-         args: --sarif-file-output=snyk-publish.sarif --severity-threshold=high
+      - name: Setup Snyk CLI
+        uses: snyk/actions/setup@master
 
+      - name: Snyk scan published package
+        run: snyk test --severity-threshold=high --sarif-file-output=snyk-publish.sarif
+        env:
+           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        shell: bash
+
+      - name: Upload SARIF to GitHub Security
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+            sarif_file: snyk-publish.sarif
 
       - name: Create tag using deploy key
         uses: './.github/create-tag'
