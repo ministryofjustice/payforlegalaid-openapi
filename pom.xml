@@ -6,7 +6,7 @@
 
     <groupId>uk.gov.laa</groupId>
     <artifactId>payforlegalaid-openapi</artifactId>
-    <version>0.0.17</version>
+    <version>0.0.18</version>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
