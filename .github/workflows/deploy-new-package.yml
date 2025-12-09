@@ -29,12 +29,6 @@ jobs:
       - name: Setup Snyk CLI
         uses: snyk/actions/setup@master
 
-      - name: Run Snyk scan
-        run: snyk test --severity-threshold=high --sarif-file-output=snyk-publish.sarif
-        env:
-           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-        shell: bash
-
       - name: Snyk scan published package
         run: snyk test --severity-threshold=high --sarif-file-output=snyk-publish.sarif
         env:
