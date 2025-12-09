@@ -1,0 +1,40 @@
+name: Build and run tests
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout repository
+      uses: actions/checkout@v5
+
+    - name: Setup Java
+      uses: actions/setup-java@v5
+      with:
+        distribution: 'corretto'
+        java-version: '17'
+
+    - name: Run build
+      run: mvn -B clean package
+      shell:
+        bash
+
+    - name: Find built JAR
+      id: find-jar
+      run: |
+        JAR_FILE=$(ls target/*.jar)
+        echo "jar_file=$JAR_FILE" >> $GITHUB_OUTPUT
+      shell: bash
+
+    - name: Setup Snyk CLI
+      uses: snyk/actions/setup@master
+
+    - name: Snyk scan JAR
+      run: snyk test --file=$OUTPUT_FILE --sarif-file-output=snyk-jar.sarif --severity-threshold=high
+      env:
+        SNYK_TOKEN: ${{ env.SNYK_TOKEN }}
+        OUTPUT_FILE: ${{ steps.find-jar.outputs.jar_file }}
+      shell: bash
+
+    - name: Upload SARIF to GitHub Security tab
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: snyk-jar.sarif
