@@ -14,6 +14,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
     steps:
       - uses: actions/checkout@v5
       - uses: actions/setup-java@v5
@@ -21,10 +22,8 @@ jobs:
           java-version: '17'
           distribution: 'corretto'
 
-      - name: Publish package
-        run: mvn -e -X --batch-mode deploy
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create package
+        run: mvn -e -X --batch-mode package
 
       - name: Setup Snyk CLI
         uses: snyk/actions/setup@master
@@ -39,6 +38,11 @@ jobs:
         uses: github/codeql-action/upload-sarif@v4
         with:
             sarif_file: snyk-publish.sarif
+
+      - name: Publish package to GitHub Packages
+        run: mvn -e -X --batch-mode deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Create tag using deploy key
         uses: './.github/create-tag'
