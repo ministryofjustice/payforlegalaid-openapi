@@ -15,7 +15,7 @@ TBD - awaiting hosting implementation
 
 ## Versioning
 On creation of a pull request, the `increment version` workflow will run, and automatically increment the patch version number by one. 
-Commits are signed using an SSH key. The private key is stored as a secret in GitHub and should be maintained by a current member of the team.
+Commits are signed using an SSH key. The private key is stored as a secret in GitHub and should be maintained by a current member of the team. HELLO
 
 This is to support correct values for package deployment and tag creation.
 
