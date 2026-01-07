@@ -14,13 +14,28 @@ multi-ecosystem-groups:
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
+    groups:
+      minor:
+        update-types:
+          - "minor"
+          - "patch"
     patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
   - package-ecosystem: "maven"
     directory: "/"
+    groups:
+      minor:
+        update-types:
+          - "minor"
+          - "patch"
     patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
   - package-ecosystem: "docker"
     directory: "/"
+    groups:
+      minor:
+        update-types:
+          - "minor"
+          - "patch"
     patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
