@@ -14,7 +14,7 @@ jobs:
         env:
           HEAD_REF: ${{ github.head_ref }}
         with:
-          ref: ${HEAD_REF}
+          ref: ${{ env.HEAD_REF }}
 
       - name: Set up SSH signing key
         env:
