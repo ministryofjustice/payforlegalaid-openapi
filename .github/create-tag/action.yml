@@ -6,9 +6,11 @@ runs:
 
   - name: Checkout with deploy key for tag creation
     uses: actions/checkout@v5
+    env:
+      DEPLOY_KEY: ${{ env.DEPLOY_KEY }}
     #    Use deploy key at checkout to link tag creation to a valid deploy key. This is required to meet tag creation ruleset restrictions.
     with:
-      ssh-key: ${{ env.DEPLOY_KEY }}
+      ssh-key: $DEPLOY_KEY
 
   - name: Configure Git login for tags
     # Mandatory for tag creation
