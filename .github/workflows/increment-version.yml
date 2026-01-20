@@ -11,10 +11,8 @@ jobs:
     steps:
       - name: Checkout GitHub repository
         uses: actions/checkout@v5
-        env:
-          HEAD_REF: ${{ github.head_ref }}
         with:
-          ref: ${{ env.HEAD_REF }}
+          ref: ${{ github.head_ref }}
 
       - name: Set up SSH signing key
         env:
