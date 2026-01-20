@@ -26,7 +26,7 @@ jobs:
 
       - name: Configure Git login for tags
         env:
-          OPENAPI_SSH: ${{ secrets.OPENAPI_SIGNING_SSH }}
+          OPENAPI_SSH_USER: ${{ secrets.OPENAPI_SIGNING_SSH_USER }}
           # Mandatory for version creation
         run: |
           git config user.name "github-actions[bot]"
