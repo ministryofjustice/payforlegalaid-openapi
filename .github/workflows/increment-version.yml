@@ -15,18 +15,22 @@ jobs:
           ref: ${{ github.head_ref }}
 
       - name: Set up SSH signing key
+        env:
+          OPENAPI_SIGNING_SSH: ${{ secrets.OPENAPI_SIGNING_SSH }}
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.OPENAPI_SIGNING_SSH }}" > ~/.ssh/signing_key
+          echo "${OPENAPI_SIGNING_SSH}" > ~/.ssh/signing_key
           chmod 600 ~/.ssh/signing_key  
           ssh-keygen -y -f ~/.ssh/signing_key > ~/.ssh/signing_key.pub
           chmod 644 ~/.ssh/signing_key.pub
 
       - name: Configure Git login for tags
-          # Mandatory for version creation
+        env:
+          OPENAPI_SIGNING_SSH_USER: ${{ secrets.OPENAPI_SIGNING_SSH_USER }}
+        # Mandatory for version creation
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "${{ secrets.OPENAPI_SIGNING_SSH_USER }}"    
+          git config user.email "${OPENAPI_SIGNING_SSH_USER}"    
           git config --global gpg.format ssh
           git config --global user.signingkey ~/.ssh/signing_key
           git config --global commit.gpgsign true
