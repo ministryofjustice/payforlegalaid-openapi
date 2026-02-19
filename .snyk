@@ -1,0 +1,17 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.25.1
+# ignores vulnerabilities until expiry date; change duration by modifying expiry date
+ignore:
+  SNYK-JAVA-ORGAPACHETOMCATEMBED-15307822:
+    - '*':
+        reason: >-
+          Working on Spring 4 upgrade now, want to keep this silent while we do it
+        expires: 2026-02-25T11:40:00.000Z
+        created: 2026-02-19T11:40:00.002Z
+  https://security.snyk.io/vuln/SNYK-JAVA-ORGAPACHETOMCATEMBED-15307781:
+    - '*':
+        reason: >-
+          Working on Spring 4 upgrade now, want to keep this silent while we do it
+        expires: 2026-02-25T11:40:00.000Z
+        created: 2026-02-19T11:40:00.002Z
+patch: {}
