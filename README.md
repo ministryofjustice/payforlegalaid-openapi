@@ -28,3 +28,7 @@ This is to support correct values for package deployment and tag creation.
 On deployment of a new package, the CI/CD pipeline will also tag the software 
 
 Tagging follows the naming convention vX.X.X, where X.X.X is the version defined in the `pom.xml`. If tag name pattern is altered in workflow, and does not follow convention, the tag creation will fail.
+
+## Pre commit hooks
+
+Pre commit hooks have been set up on this repository to ensure no accidental commits of secrets, keys etc. Provided by DevSecOps https://github.com/ministryofjustice/devsecops-hooks
