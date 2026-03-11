@@ -10,7 +10,7 @@ runs:
       uses: actions/setup-java@v5
       with:
         distribution: 'corretto'
-        java-version: '17'
+        java-version: '25'
 
     - name: Run build
       run: mvn -B clean package
@@ -35,6 +35,6 @@ runs:
       shell: bash
 
     - name: Upload SARIF to GitHub Security tab
-      uses: github/codeql-action/upload-sarif@v3
+      uses: github/codeql-action/upload-sarif@v4
       with:
         sarif_file: snyk-jar.sarif
