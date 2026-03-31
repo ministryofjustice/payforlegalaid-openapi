@@ -16,8 +16,8 @@ jobs:
       packages: write
       security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
     steps:
-      - uses: actions/checkout@v6
-      - uses: actions/setup-java@v5
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+      - uses: actions/setup-java@be666c2fcd27ec809703dec50e508c2fdc7f6654 # v5.2.0
         with:
           java-version: '25'
           distribution: 'corretto'
@@ -26,7 +26,7 @@ jobs:
         run: mvn -e -X --batch-mode package
 
       - name: Setup Snyk CLI
-        uses: snyk/actions/setup@master
+        uses: snyk/actions/setup@9adf32b1121593767fc3c057af55b55db032dc04 # v1.0.0
 
       - name: Snyk scan published package
         run: snyk test --severity-threshold=high --sarif-file-output=snyk-publish.sarif
@@ -35,7 +35,7 @@ jobs:
         shell: bash
 
       - name: Upload SARIF to GitHub Security
-        uses: github/codeql-action/upload-sarif@v4
+        uses: github/codeql-action/upload-sarif@c10b8064de6f491fea524254123dbe5e09572f13 # v4.35.1
         with:
             sarif_file: snyk-publish.sarif
 
