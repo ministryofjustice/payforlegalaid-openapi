@@ -21,6 +21,8 @@ updates:
           - "patch"
     patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
+    cooldown:
+      default-days: 3
   - package-ecosystem: "maven"
     directory: "/"
     groups:
@@ -30,6 +32,8 @@ updates:
           - "patch"
     patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
+    cooldown:
+      default-days: 3
   - package-ecosystem: "docker"
     directory: "/"
     groups:
@@ -39,3 +43,5 @@ updates:
           - "patch"
     patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
+    cooldown:
+      default-days: 3
