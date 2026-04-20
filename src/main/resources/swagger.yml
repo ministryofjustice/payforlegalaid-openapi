@@ -227,8 +227,9 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /csv/{id}:
+  /reports/{id}/csv:
     get:
+      operationId: downloadCsv
       tags:
         - Reports
       summary: Download Report as CSV Stream
@@ -268,7 +269,7 @@ paths:
         '500':
           $ref: '#/components/responses/InternalServerError'
 
-  /excel/{id}:
+  /reports/{id}/excel:
     get:
       tags:
         - Reports
