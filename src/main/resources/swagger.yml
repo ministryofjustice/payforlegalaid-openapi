@@ -229,7 +229,7 @@ paths:
 
   /reports/{id}/csv:
     get:
-      operationId: downloadCsv
+      operationId: getCsvById
       tags:
         - Reports
       summary: Download Report as CSV Stream
