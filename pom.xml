@@ -6,15 +6,15 @@
 
     <groupId>uk.gov.laa</groupId>
     <artifactId>payforlegalaid-openapi</artifactId>
-    <version>0.0.32</version>
+    <version>0.0.33</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
         <maven.compiler.target>25</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <spring-boot.version>4.0.5</spring-boot.version>
+        <spring-boot.version>4.0.6</spring-boot.version>
         <openapi-generator.version>7.21.0</openapi-generator.version>
-        <swagger-annotations.version>2.2.45</swagger-annotations.version>
+        <swagger-annotations.version>2.2.48</swagger-annotations.version>
     </properties>
 
     <build>
@@ -93,14 +93,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <!--- Transitive dependency CVEs - remove if Spring etc upgrade -->
-        <dependency>
-            <!-- Spring currently sitting at 3.0.4 -->
-            <groupId>tools.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>3.1.1</version>
         </dependency>
     </dependencies>
 
