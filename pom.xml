@@ -6,7 +6,11 @@
 
     <groupId>uk.gov.laa</groupId>
     <artifactId>payforlegalaid-openapi</artifactId>
+<<<<<<< dependabot/maintenance_updates-7a09d5a775
     <version>0.0.33</version>
+=======
+    <version>0.0.32</version>
+>>>>>>> main
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
