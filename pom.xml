@@ -14,7 +14,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot.version>4.0.6</spring-boot.version>
         <openapi-generator.version>7.22.0</openapi-generator.version>
-        <swagger-annotations.version>2.2.49</swagger-annotations.version>
+        <swagger-annotations.version>2.2.50</swagger-annotations.version>
     </properties>
 
     <build>
