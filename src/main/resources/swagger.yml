@@ -62,6 +62,7 @@ components:
       content:
         application/json:
           schema:
+            title: ReportsGet401Response
             type: object
             properties:
               error:
@@ -72,6 +73,7 @@ components:
       content:
         application/json:
           schema:
+            title: ReportsGet404Response
             type: object
             properties:
               error:
@@ -82,6 +84,7 @@ components:
       content:
         application/json:
           schema:
+            title: ReportsGet500Response
             type: object
             properties:
               error:
@@ -92,6 +95,7 @@ components:
       content:
         application/json:
           schema:
+            title: ReportsGet400Response
             type: object
             properties:
               error:
@@ -102,6 +106,7 @@ components:
       content:
         application/json:
           schema:
+            title: GetReportDownloadById403Response
             type: object
             properties:
               error:
@@ -112,6 +117,7 @@ components:
       content:
         application/json:
           schema:
+            title: GetReportDownloadById501Response
             type: object
             properties:
               error:
