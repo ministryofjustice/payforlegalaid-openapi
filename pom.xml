@@ -17,8 +17,8 @@
         <swagger-annotations.version>2.2.52</swagger-annotations.version>
 
         <!-- Snyk vulns -->
-        <logback.version>1.5.37</logback.version>
-        <tomcat.version>11.0.23</tomcat.version>
+        <logback.version>1.5.38</logback.version>
+        <tomcat.version>11.0.24</tomcat.version>
     </properties>
 
     <build>
