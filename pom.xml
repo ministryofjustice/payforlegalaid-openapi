@@ -6,7 +6,7 @@
 
     <groupId>uk.gov.laa</groupId>
     <artifactId>payforlegalaid-openapi</artifactId>
-    <version>0.0.41</version>
+    <version>0.0.42</version>
 
     <properties>
         <maven.compiler.source>25</maven.compiler.source>
@@ -17,8 +17,9 @@
         <swagger-annotations.version>2.2.52</swagger-annotations.version>
 
         <!-- Snyk vulns -->
-        <logback.version>1.5.37</logback.version>
-        <tomcat.version>11.0.23</tomcat.version>
+        <logback.version>1.5.38</logback.version>
+        <tomcat.version>11.0.24</tomcat.version>
+        <jackson-databind.version>3.1.5</jackson-databind.version>
     </properties>
 
     <build>
@@ -109,6 +110,11 @@
             <groupId>org.apache.tomcat.embed</groupId>
             <artifactId>tomcat-embed-core</artifactId>
             <version>${tomcat.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>tools.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson-databind.version}</version>
         </dependency>
     </dependencies>
 
