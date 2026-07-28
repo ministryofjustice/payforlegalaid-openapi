@@ -14,23 +14,29 @@ multi-ecosystem-groups:
 updates:
   - package-ecosystem: "github-actions"
     directory: "/"
+    patterns:
+      - "*"
     groups:
       minor:
+        patterns:
+          - "*"
         update-types:
           - "minor"
           - "patch"
-      patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
     cooldown:
       default-days: 3
   - package-ecosystem: "maven"
     directory: "/"
+    patterns:
+      - "*"
     groups:
       minor:
+        patterns:
+          - "*"
         update-types:
           - "minor"
           - "patch"
-      patterns: [ "*" ]
     multi-ecosystem-group: "maintenance-updates"
     cooldown:
       default-days: 3
